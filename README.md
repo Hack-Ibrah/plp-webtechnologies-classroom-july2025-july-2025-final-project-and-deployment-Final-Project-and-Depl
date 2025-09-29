@@ -44,7 +44,7 @@
 
 ## � Live Demo
 
-> [Replace this with your deployed site URL, e.g. https://yourusername.github.io/ibra-art/]
+> (https://jovial-paletas-0e0f2e.netlify.app/)
 
 ---
 
