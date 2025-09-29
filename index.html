@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ibra's Art - Home</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Ibra's Art</a>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Art Gallery</a>
+        <a href="contact.html">Contact US</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+<section class="hero">
+  <img src="images/pp.jpg" alt="Ibra's artwork" class="hero-bg">
+  <div class="container hero-inner">
+    <h1 class="hero-title">Welcome to Ibra's Art</h1>
+    <p>Exploring creativity through digital and traditional artwork. Discover my portfolio and connect with me.</p>
+    <a href="gallery.html" class="btn">View Gallery</a>
+  </div>
+</section>
+
+
+
+  <section class="featured container">
+    <h2>Featured Works</h2>
+    <div class="featured-grid">
+      <article class="card">
+        <img src="images/abstract.jpg" alt="Abstract painting">
+        <h3>Abstract Painting</h3>
+      </article>
+      <article class="card">
+        <img src="images/photo2.jpg" alt="Digital landscape">
+        <h3>Photography</h3>
+      </article>
+      <article class="card">
+        <img src="images/a6.jpg" alt="Sketch portrait">
+        <h3>Portrait Sketch</h3>
+      </article>
+    </div>
+  </section>
+<!-- Art Classes Section -->
+<section class="art-classes">
+  <h2>Join Our Art Classes</h2>
+  <div class="form-video-flex">
+
+    <!-- Application Form -->
+    <div class="form-box">
+      <form id="applicationForm" class="application-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="continent">Continent:</label>
+        <select id="continent" name="continent" required>
+          <option value="">-- Select your continent --</option>
+          <option>Africa</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>North America</option>
+          <option>South America</option>
+          <option>Australia</option>
+          <option>Antarctica</option>
+        </select>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="art">Type of Art:</label>
+        <select id="art" name="art" required>
+          <option value="">-- Select art type --</option>
+          <option value="painting">Painting</option>
+          <option value="graphite">Graphite</option>
+          <option value="photography">Photography</option>
+        </select>
+
+        <button type="submit">Apply Now</button>
+      </form>
+    </div>
+
+    <!-- Teaser Videos -->
+    <div class="video-box">
+      <video controls height="627">
+        <source src="video/vid6.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Shop Section -->
+<section class="shop container">
+  <h2>Shop</h2>
+  <div class="shop-grid">
+    <article class="card">
+      <img src="images/abstract2.jpg" alt="Shop item 1">
+      <h3>Painting – Abstract Flow</h3>
+      <p>$120</p>
+    </article>
+    <article class="card">
+      <img src="images/sunset1.jpg" alt="Shop item 2">
+      <h3>Photography – Sunset Horizon</h3>
+      <p>$90</p>
+    </article>
+    <article class="card">
+      <img src="images/a7.jpg" alt="Shop item 3">
+      <h3>Graphite Portrait</h3>
+      <p>$60</p>
+    </article>
+  </div>
+</section>
+
+<!-- Chat Box -->
+<section class="chat-box container">
+  <h2>Chat with Us</h2>
+  <div class="chat-window">
+    <div class="messages" id="chat-messages">
+      <p><strong>Ibra's Art:</strong> Hi there 👋 How can we help you?</p>
+    </div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</section>
+
+
+
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Ibra's Art. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.tiktok.com/@Ibrazlife" target="_blank"><i class="fab fa-tiktok"></i> Ibraz life</a>
+      <a href="https://www.facebook.com/IbrahimAliRasso" target="_blank"><i class="fab fa-facebook"></i> Ibrahim Ali Rasso</a>
+      <a href="https://www.youtube.com/@IbrasArt" target="_blank"><i class="fab fa-youtube"></i> Ibra's Art</a>
+      <a href="https://www.instagram.com/Charming_Ibrah254" target="_blank"><i class="fab fa-instagram"></i> Charming_Ibrah254</a>
+      <a href="https://wa.me/254791940724" target="_blank"><i class="fab fa-whatsapp"></i> +254791940724</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Ibra's Art</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Basic form message animation */
+    .form-msg {
+      margin-top: 10px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .form-msg.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Ibra's Art</a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contact Me</h1>
+    <form id="contact-form" action="https://formspree.io/f/mjkayabb" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <!-- Honeypot for spam protection -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <button type="submit" class="btn">Send</button>
+      <p id="form-msg" class="form-msg" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Ibra's Art. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@Ibrazlife" target="_blank"><i class="fab fa-tiktok"></i> Ibraz life</a>
+        <a href="https://www.facebook.com/IbrahimAliRasso" target="_blank"><i class="fab fa-facebook"></i> Ibrahim Ali Rasso</a>
+        <a href="https://www.youtube.com/@IbrasArt" target="_blank"><i class="fab fa-youtube"></i> Ibra's Art</a>
+        <a href="https://www.instagram.com/Charming_Ibrah254" target="_blank"><i class="fab fa-instagram"></i> Charming_Ibrah254</a>
+        <a href="https://wa.me/254791940724" target="_blank"><i class="fab fa-whatsapp"></i> +254791940724</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Auto-update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Contact form submission
+    const form = document.getElementById("contact-form");
+    const msg = document.getElementById("form-msg");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      msg.textContent = "⏳ Sending...";
+      msg.style.color = "blue";
+      msg.classList.add("show");
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          msg.textContent = "✅ Message sent successfully!";
+          msg.style.color = "green";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Oops! Something went wrong. Please try again.";
+          msg.style.color = "red";
+        }
+      } catch (error) {
+        msg.textContent = "❌ Network error. Please try again later.";
+        msg.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>

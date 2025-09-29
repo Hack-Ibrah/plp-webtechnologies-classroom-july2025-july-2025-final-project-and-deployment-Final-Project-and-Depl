@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Ibra's Art</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* --- Slider Styles --- */
+    .slider-container {
+      position: relative;
+      max-width: 1000px;
+      height: 250px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      background: transparent; /* keep page background visible */
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 10;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+    }
+
+/* Dots */
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  background-color: rgba(0,0,0,0.7); /* changed to semi-transparent black */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dot.active { 
+  background-color: black; /* active dot fully black */
+}
+
+
+    /* --- Responsive Media Queries --- */
+    @media (max-width: 1024px) {
+      .slider-container { height: 450px; }
+      .prev, .next { padding: 10px; font-size: 18px; }
+    }
+
+    @media (max-width: 768px) {
+      .slider-container { height: 350px; }
+      .prev, .next { padding: 8px; font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .slider-container { height: 250px; }
+      .prev, .next { padding: 6px; font-size: 14px; }
+      .dot { width: 10px; height: 10px; margin: 0 4px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Ibra's Art</a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h1>Gallery</h1>
+
+    <!-- Slider -->
+    <div class="slider-container">
+      <div class="slides">
+        <img src="images/a1.jpg" alt="Abstract Flow">
+        <img src="images/a3.jpg" alt="Digital Horizon">
+        <img src="images/a4.jpg" alt="Portrait Sketch">
+        <img src="images/a6.jpg" alt="Watercolor Scene">
+        <img src="images/a7.jpg" alt="Watercolor Scene">
+        <img src="images/art1.jpg" alt="Watercolor Scene">
+        <img src="images/art2.jpg" alt="Watercolor Scene">
+        <img src="images/abstract.jpg" alt="Watercolor Scene">
+        <img src="images/abstract2.jpg" alt="Watercolor Scene">
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+      <div class="dots">
+        <span class="dot" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close">✖</button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
+  </div>
+<!-- ===== Gallery Info Section with Single Background Image ===== -->
+<section class="gallery-info-bg">
+  <div class="gallery-row container">
+    <div class="gallery-column">
+      <h3>Our Vision</h3>
+      <p>At Ibra’s Art, we aim to inspire creativity and showcase the beauty of contemporary and traditional art. Our gallery brings together diverse styles to tell compelling stories through visual expression.</p>
+    </div>
+    <div class="gallery-column">
+      <h3>Our Collection</h3>
+      <p>From abstract pieces to realistic portraits, digital art, and watercolors, our collection is carefully curated to display both emerging and established artists. Every artwork is chosen to evoke emotion and provoke thought.</p>
+    </div>
+    <div class="gallery-column">
+      <h3>Experience the Art</h3>
+      <p>Visitors can explore the gallery online or in-person, enjoy interactive displays, and learn about the stories behind each artwork. Our gallery is a space for art enthusiasts to connect, learn, and appreciate creativity in all its forms.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year-gallery"></span> Ibra's Art. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    // --- Slider JS ---
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const dots = document.querySelectorAll('.dot');
+
+    let index = 0;
+    const total = images.length;
+    let interval;
+
+    function showSlide(i) {
+      slides.style.transform = `translateX(${-i * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[i].classList.add('active');
+    }
+
+    function nextSlide() { index = (index + 1) % total; showSlide(index); }
+    function prevSlide() { index = (index - 1 + total) % total; showSlide(index); }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        index = parseInt(dot.getAttribute('data-index'));
+        showSlide(index);
+        resetInterval();
+      });
+    });
+
+    nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
+    prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
+
+    function startInterval() { interval = setInterval(nextSlide, 3000); }
+    function resetInterval() { clearInterval(interval); startInterval(); }
+
+    document.querySelector('.slider-container').addEventListener('mouseenter', () => clearInterval(interval));
+    document.querySelector('.slider-container').addEventListener('mouseleave', startInterval);
+
+    startInterval();
+    showSlide(index);
+
+    // --- Lightbox JS ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.alt;
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => { lightbox.setAttribute('aria-hidden', 'true'); });
+
+    // --- Footer Year ---
+    document.getElementById('year-gallery').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
